@@ -1,21 +1,22 @@
 #include<iostream>
 using namespace std;
 
-class Office {
-private:
-    string name;
-    char title[];
-    int roomNumber, intercom;
+class Department{
 public:
-    Office(){
-        name {}; title{}; roomNumber = intercom = 0;
-    }                       // constructors
-    ~Office()
-    void printNumber() {
-    cout << "The intercom number of " << name << " is: ";
-    cout << intercom << endl;
-    return;
-    }
+	string dept;
+	int floorNum;
+};
+
+class Office:public Department {
+public:
+    string title;
+    int roomNum, intercomNum, 
+};
+
+class Person:public Department {
+public:
+	string name;
+	long int mobileNum;
 };
 
 int main() {

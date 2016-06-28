@@ -1,39 +1,50 @@
 #include<iostream>
 using namespace std;
 
-class Department{
-protected:
+class Person{
+public:
+    string firstName, surname;
+    long long int mobileNum;
+	Person() {
+	firstName = "Victor";
+	surname = "Ordu";
+	mobileNum = 2348034510441;
+	return;
+	}
+	~Person() {return;}
+};
+
+class Office:public Person {
+    string title;
+    int roomNum, intercomNum;
+public:
+	Office() {
+		title = "Special Assistant";
+		roomNum = 203;
+		intercomNum = 161;
+		return;
+	}
+	~Office(){return;};
+	void printNum() {
+		cout <<  "Intercom No. of " << firstName << " " << surname << " is " << intercomNum << endl;
+		return;
+	}
+};
+class Department:public Office{
 	string dept;
 	int floorNum;
 public:
-	Department("DG's Office", 2);
-	~Department();
-};
-
-class Office:public Department {
-public:
-    string title;
-    int roomNum, intercomNum;
-	Office("Special Assistant", 203, 161);
-	~Office();
-};
-
-class Person:public Department {
-public:
-	string firstName, surname;
-	long int mobileNum;
-	Person("Victor", "Ordu", 2348034510441);
-	~Person();
-	
+	Department(){
+		dept = "DG's Office";
+		floorNum = 2;
+		return;
+	}
+	~Department(){return;}
 };
 
 int main() {
-;
-cout <<  "Who do you want to reach? " << endl;
-cout << "Enter name: ";
-cin >> A.name;
-
-A.printNumber();
+Office indiv;
+indiv.printNum();
 
 return 0;
 }

@@ -3,11 +3,12 @@ using namespace std;
 
 class Person{
 public:
-    string firstName, surname;
+    string firstName, surname, title;
     long long int mobileNum;
 	Person() {
 	firstName = "Victor";
 	surname = "Ordu";
+	title = "Special Assistant";
 	mobileNum = 2348034510441;
 	return;
 	}
@@ -15,18 +16,16 @@ public:
 };
 
 class Office:public Person {
-    string title;
     int roomNum, intercomNum;
 public:
 	Office() {
-		title = "Special Assistant";
 		roomNum = 203;
 		intercomNum = 161;
 		return;
 	}
 	~Office(){return;};
 	void printNum() {
-		cout <<  "Intercom No. of " << firstName << " " << surname << " is " << intercomNum << endl;
+		cout << firstName  << " " << surname << "'s intercom No. is " << intercomNum << endl;
 		return;
 	}
 };

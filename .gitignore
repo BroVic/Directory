@@ -4,3 +4,4 @@ Directory.cbp
 Directory.layout 
 Directory.depend 
 bin/* 
+obj/* 

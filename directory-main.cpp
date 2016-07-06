@@ -1,4 +1,6 @@
 #include<iostream>
+#include<cstring>
+#include<cstdio>
 using namespace std;
 
 class Person{
@@ -20,7 +22,6 @@ public:
 
 	~Person() {return;}
 };
-
 class Office:public Person {
 protected:
     int roomNum, intercomNum;
@@ -56,10 +57,65 @@ public:
 	}
 	~Department(){return;}
 };
-
+class fileOps{
+	FILE *fptrIn;
+	char stringIn[100];
+	char title[30], dept[50], intcom[4];
+	char b;
+	int i, k, N;
+public:
+	// constructors
+	fileOps() {
+		N = 1;
+		b = ' ';
+		fptrIn = fopen("office-contact.txt", "r"); // review this line!!!
+		return;
+	}
+	~fileOps(){
+		fclose(fptrIn);
+		return;
+	}
+	bool validate(){
+	if (fptrIn == NULL){
+			cout << "Could not open database" << endl;
+			return true;
+		}
+		return false;
+	}
+	void printAll(){
+		fgets(stringIn, 99, fptrIn);
+		while(!feof(fptrIn)) {
+			i = 0; k = 0;
+			while ((title[i++] = stringIn[k++]) != ',');
+			title[i - 1] = '\0'; i = 0;
+			while ((intcom[i++] = stringIn[k++]) != ',');
+			intcom[i - 1] = '\0'; i = 0;
+			while ((dept[i++] = stringIn[k++]) != '\0');
+			cout << N << b << title << b << intcom << b << dept << endl;
+			fgets(stringIn, 99, fptrIn);
+			N++;
+		}
+		cout << endl << endl;
+		return;
+	}
+	};
 int main() {
-Office indiv;
+fileOps RdWrt;
+Department indiv;
+
+// Validation of success of file opening
+bool testing{};
+testing = RdWrt.validate();
+if (testing == true) {return -1;}
+
+// Look for a record
+
+// Print out the result
+RdWrt.printAll();
 indiv.printNum();
+
+// To input new data
+
 
 return 0;
 }

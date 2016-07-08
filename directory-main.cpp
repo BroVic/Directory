@@ -77,10 +77,10 @@ public:
 	}
 	bool validate(){
 	if (fptrIn == NULL){
-			cout << "Could not open database" << endl;
-			return true;
-		}
-		return false;
+            cout << "Could not open database" << endl;
+            return true;
+    }
+    else {return false;}
 	}
 	void printAll(){
 		fgets(stringIn, 99, fptrIn);

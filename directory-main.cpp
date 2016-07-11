@@ -77,6 +77,7 @@ int main() {
 Record row;
 fileOps RdWrt;
 int options = 0;
+char trigger;
 // Validation of success of file opening
 bool testing{};
 testing = RdWrt.validate();
@@ -86,8 +87,18 @@ if (testing == true){return -1;}
 
 cout << "To display available records, enter '1': ";
 cin >> options;
-if (options == 1)
-	RdWrt.printAll(row);
+cout << "You selected " << options << "\n ";
+cout << "Do you want to continue {Y/N)?: ";
+cin >> trigger;
+if (trigger == 'Y' || trigger == 'y') {
+	if (options == 1){
+			RdWrt.printAll(row);
+			}
+	}
+else if (trigger == 'N' || trigger == 'n'){
+		cout << "Thank you. Good bye" << endl;
+	}
+else {cout << trigger << " is not a valid entry. Exiting the application." << endl;}
 // Print out the result
 
 return 0;

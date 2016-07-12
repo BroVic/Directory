@@ -10,20 +10,22 @@ using namespace std;
 */
 
 class Record{
-	friend class fileOps;
-	private:
-		char title[30] = { 'D', 'G', '/', 'C', 'E', 'O', '\0' };
-		char intercomNum[4] = {'1', '5', '0', '\0'};
-		char dept[50] = {'D', 'G', '/', 'C', 'E', 'O', '\'', 's', 'O', 'f', 'f', 'i', 'c', 'e', '\0' };
 	public:
+		char title[30];
+		char intercomNum[4];
+		char dept[50];
 	// Constructors/deconstructor
 	Record(){
-	return;
+	    title[0] = ' ';
+	    intercomNum[0] = ' ';
+	    dept[0] = ' ';
+	    return;
 	}
 	~Record(){return;}
 };
 
-class fileOps{
+class fileOps:public Record{
+private:
 	FILE *fptrIn;
 	char stringIn[100];
 	char b;
@@ -36,10 +38,12 @@ public:
 		fptrIn = fopen("office-contact.csv", "r"); // review this line!!!
 		return;
 	}
+
 	~fileOps(){
 		fclose(fptrIn);
 		return;
 	}
+
 	bool validate(){
 	if (fptrIn == NULL){
             cout << "Could not open database" << endl;
@@ -47,11 +51,13 @@ public:
             }
     else {return false;}
 	}
+
 	// Define a function for collecting record strings
 	void collectStrings(){
 	fgets(stringIn, 99, fptrIn);
 	return;
 	}
+
 	// Function to print all available records to the console
 	void printAll(Record &r){
 		collectStrings();
@@ -83,8 +89,20 @@ bool testing{};
 testing = RdWrt.validate();
 if (testing == true){return -1;}
 // Look for a record
-// To print out all items in the database
+/* Function to print only 1 record
+	1. Declare 2 variables A & B
+	2. Declare one array C
+	3. Input a value A
+	4. Collect a string from the file
+	5. Extract from the string an appropriate value B that matches with A
+	6. Compare A & B
+	7. If A = B, then store item of interest in C
+	8. If A != B, do nothing
+	9. Repeat 4 - 9 until you reach end of the file
+	10. Print elements of C one after the other
+	11. End */
 
+// To print out all items in the database
 cout << "To display available records, enter '1': ";
 cin >> options;
 cout << "You selected " << options << "\n ";

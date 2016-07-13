@@ -8,7 +8,6 @@ using namespace std;
 2. Representation of each record on file
 
 */
-
 class Record{
 	public:
 		char title[30];
@@ -30,15 +29,16 @@ private:
 	char stringIn[100];
 	char b;
 	int i, j, N;
+	string entry;
 public:
 	// constructors
 	fileOps() {
 		N = 1;
 		b = ' ';
+		string = "blank";
 		fptrIn = fopen("office-contact.csv", "r"); // review this line!!!
 		return;
 	}
-
 	~fileOps(){
 		fclose(fptrIn);
 		return;
@@ -51,24 +51,31 @@ public:
             }
     else {return false;}
 	}
-
-	// Define a function for collecting record strings
+	
+	// Definition of some functions
+	// Function for collecting record strings
 	void collectStrings(){
 	fgets(stringIn, 99, fptrIn);
 	return;
 	}
 
-	// Function to print all available records to the console
-	void printAll(Record &r){
-		collectStrings();
-		while(!feof(fptrIn)) {
-			i = 0; j = 0;
+	// Function for splitting strings into parts
+	void splitString(){	
+			int i = 0; int j = 0;
 			while ((r.title[i++] = stringIn[j++]) != ',');
 			for (; i < 29; i++) r.title[i-1] = ' ';
 			r.title[i - 1] = '\0'; i = 0;
 			while ((r.intercomNum[i++] = stringIn[j++]) != ',');
 			r.intercomNum[i - 1] = '\0'; i = 0;
 			while ((r.dept[i++] = stringIn[j++]) != '\0');
+			return;
+			}
+	
+	// Function to print all available records to the console
+	void printAll(Record &r){
+		collectStrings();
+		while(!feof(fptrIn)) {
+			splitString();
 			cout << N << b << r.title << b << r.intercomNum << b << r.dept << endl;
 			collectStrings();
 			N++;
@@ -76,7 +83,27 @@ public:
 		cout << endl << endl;
 		return;
 	}
-	// Function to print only 1 record
+	
+	// Function to print only selected records
+	void printSelect(string &input, char &y[], char &collector[]) {
+		cin >> x;
+		collectStrings();
+		// 5. Extract from the string an appropriate value
+		while(!feof(fptrIn)) {
+			splitString();
+			collector =  
+		// 6. Compare A & B		
+		// 7. If A = B, then store item of interest in C
+		// 8. If A != B, do nothing	
+		// 9. Repeat 4 - 9 until you reach end of the file
+			
+			cout << N << b << r.title << b << r.intercomNum << b << r.dept << endl;
+			collectStrings();
+			N++;
+		}
+	// 10. Print elements of C one after the other
+	}
+
 };
 
 int main() {
@@ -89,18 +116,7 @@ bool testing{};
 testing = RdWrt.validate();
 if (testing == true){return -1;}
 // Look for a record
-/* Function to print only 1 record
-	1. Declare 2 variables A & B
-	2. Declare one array C
-	3. Input a value A
-	4. Collect a string from the file
-	5. Extract from the string an appropriate value B that matches with A
-	6. Compare A & B
-	7. If A = B, then store item of interest in C
-	8. If A != B, do nothing
-	9. Repeat 4 - 9 until you reach end of the file
-	10. Print elements of C one after the other
-	11. End */
+
 
 // To print out all items in the database
 cout << "To display available records, enter '1': ";

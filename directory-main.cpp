@@ -8,104 +8,99 @@ using namespace std;
 2. Representation of each record on file
 
 */
-class Record{
+class Record {
 	public:
 		char title[30];
 		char intercomNum[4];
 		char dept[50];
 	// Constructors/deconstructor
-	Record(){
+	Record() {
 	    title[0] = ' ';
 	    intercomNum[0] = ' ';
 	    dept[0] = ' ';
-	    return;
 	}
-	~Record(){return;}
+	~Record() { };
 };
 
-class fileOps:public Record{
+class fileOps:public Record {
 	protected:
 		FILE *fptrIn;
-		char stringIn[100];
-		char b;
-		int i, j, N;
+		char file_string[100];
+		int i, j;
+		char brk;
 	public:
 		// constructors
 		fileOps() {
-			N = 1;
-			b = ' ';
-			stringIn[0] = {};
 			fptrIn = fopen("office-contact.csv", "r");
-			return;
+			file_string[0] = {};
+			i = 0; j = 0;
+			brk = ' ';
 		}
-		~fileOps(){
-			fclose(fptrIn);
-			return;
-		}
+		~fileOps() {fclose(fptrIn);}
 
         // Pure virtual functions
 		virtual void printOut() = 0;   // to print output
 		virtual bool validate() = 0;   // to validate file opening
 
 		// Functions for file operations
-		void collectStrings(){          // for collecting strings from file
-		fgets(stringIn, 99, fptrIn);
+		void collectStrings() {          // for collecting strings from file
+		fgets(file_string, 99, fptrIn);
 		return;
 		}
 
-		void splitString(){             // for splitting strings into parts
-				int i = 0; int j = 0;
-				while ((title[i++] = stringIn[j++]) != ',');
+		void splitString() {             // for splitting strings into parts
+				i = 0; j = 0;
+				while ((title[i++] = file_string[j++]) != ',');
 				for (; i < 29; i++) title[i-1] = ' ';
 				title[i - 1] = '\0'; i = 0;
-				while ((intercomNum[i++] = stringIn[j++]) != ',');
+				while ((intercomNum[i++] = file_string[j++]) != ',');
 				intercomNum[i - 1] = '\0'; i = 0;
-				while ((dept[i++] = stringIn[j++]) != '\0');
+				while ((dept[i++] = file_string[j++]) != '\0');
 				return;
 				}
 };
 
 class AllRecords:public fileOps {
+	int SN;
 	public:
 		// Constructor/Deconstructor
-		AllRecords() {return;}
-		~AllRecords() {return;}
+		AllRecords() {SN = 1;}
+		~AllRecords() { };
 
 		virtual bool validate(){
-		if (fptrIn == NULL){
+		if (fptrIn == NULL) {
 				cout << "Could not open to print EXISTING records" << endl;
 				return true;
 				}
 		else {return false;}
 		}
 
-		virtual void printOut(){            // for printing all existing records
+		virtual void printOut() {            // for printing all existing records
 			collectStrings();
 			while(!feof(fptrIn)) {
 				splitString();
-				cout << N << b << title << b << intercomNum << b << dept << endl;
+				cout << SN << brk << title << brk << intercomNum << brk << dept << endl;
 				collectStrings();
-				N++;
+				SN++;
 			}
-			cout << endl << endl;
+			cout << "\nEnd of print-out of available records.\n" << endl;
 			return;
 		}
 };
 
 class SelectRecords:public fileOps {
 	private:
-		char str[];
-		char inTitle[];
-		int len;
+		char typed_string[30], tempStr[30];
+		signed int comparison;
+		int SN;
 	public:
 		// Constructor/Deconstructor
 		SelectRecords() {
-		    str[0] = {};
-			inTitle[0] = {};
-			len = 0;
-			return;
+		    typed_string[0] = {}; tempStr[0] = {};
+		    comparison = -1;
+		    SN = 1;
 		}
-		~SelectRecords() {return;}
+		~SelectRecords() { };
 
 		virtual bool validate(){
 		if (fptrIn == NULL){
@@ -115,32 +110,33 @@ class SelectRecords:public fileOps {
 		else {return false;}
 		}
 
-		virtual void printOut() {           // for printing selected records
-		    char tempIn[] = {}; char tempOut[] = {};
-            cout << "Enter Officer's title: ";
-            gets(str);
-            len = strlen(str);
-            for (int i = 0; i < len; i++) {
-                    inTitle[i] = str[i];
-            }
+		virtual void printOut() {
+			 // for printing selected records
+            printf("Enter Officer's title: ");
+            scanf("%29s", typed_string);
+            // get the length of the entered string + NULL character
+
             collectStrings();
             while(!feof(fptrIn)) {
-                splitString();
-                for (i = 0;;i++){
-                    tempIn[i] = inTitle[i];
-                    tempOut[i] = title[i];
+            	// extract a string of equivalent length from the string on file
+                for (i = 0; i < strlen(typed_string); i++) {
+					tempStr[i] = file_string[i];
                 }
-                tempOut[j-1] = '\0';
-                if (tempIn == tempOut) {
-                    cout << N << b << title << b << intercomNum << b << dept << endl;
+                tempStr[i] = '\0';
+                // compare both strings
+                comparison = strcmp(tempStr, typed_string);
+                // if identical, print out the string from file
+                // else do nothing
+                if (comparison == 0) {
+                    printf("%s \n", file_string);
                 }
                 collectStrings();
-                N++;
+                SN++;
             }
         }
 };
 
-int main() {// constructors
+int main() {
 	fileOps *RdWrt;
 	// AllRecords all;
 	SelectRecords some;
@@ -153,8 +149,10 @@ int main() {// constructors
 
 	// Look for selected records
 	RdWrt = &some;
+
 	testing = RdWrt->validate();
 	if (testing == true){return -1;}
+
 	RdWrt->printOut();
 
 	/* To print out all items in the database

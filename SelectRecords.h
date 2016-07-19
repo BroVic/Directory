@@ -1,5 +1,6 @@
 #ifndef SELECTRECORDS_H_INCLUDED
 #define SELECTRECORDS_H_INCLUDED
+#include"fileOps.h"
 class SelectRecords:public fileOps {
 	private:
 		char typed_string[30], tempStr[30];

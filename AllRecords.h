@@ -1,5 +1,6 @@
 #ifndef ALLRECORDS_H_INCLUDED
 #define ALLRECORDS_H_INCLUDED
+#include"fileOps.h"
 class AllRecords:public fileOps {
 	int SN;
 	public:

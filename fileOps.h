@@ -1,5 +1,6 @@
 #ifndef FILEOPS_H_INCLUDED
 #define FILEOPS_H_INCLUDED
+#include"Record.h"
 class fileOps:public Record {
 	protected:
 		FILE *fptrIn;

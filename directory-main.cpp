@@ -1,11 +1,8 @@
 #include<iostream>
 #include<cstring>
 #include<cstdio>
-#include"Record.h"
-#include"fileOps.h"
 #include"AllRecords.h"
 #include"SelectRecords.h"
-
 int main() {
 	fileOps *RdWrt;
 	// AllRecords all;

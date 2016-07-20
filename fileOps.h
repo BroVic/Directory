@@ -2,22 +2,20 @@
 #define FILEOPS_H_INCLUDED
 #include"Record.h"
 class fileOps:public Record {
+    private:
+        int i, j;  // counters
 	protected:
 		FILE *fptrIn;
-		char file_string[100];
-		int i, j;
-		char brk;
+		char file_string[100];  // to be changed to pointer instead
 	public:
-		// constructors
 		fileOps() {
 			fptrIn = fopen("office-contact.csv", "r");
 			file_string[0] = {};
 			i = 0; j = 0;
-			brk = ' ';
 		}
 		~fileOps() {fclose(fptrIn);}
 
-        // Pure virtual functions
+        // Pure virtual functions to be implemented in derived classes
 		virtual void printOut() = 0;   // to print output
 		virtual bool validate() = 0;   // to validate file opening
 

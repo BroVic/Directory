@@ -2,10 +2,15 @@
 #define ALLRECORDS_H_INCLUDED
 #include"fileOps.h"
 class AllRecords:public fileOps {
-	int SN;
+    private:
+        int SN;
+        char brk;
 	public:
 		// Constructor/Deconstructor
-		AllRecords() {SN = 1;}
+		AllRecords() {
+		    SN = 1;
+		    brk = ' ';
+        }
 		~AllRecords() { };
 
 		virtual bool validate(){

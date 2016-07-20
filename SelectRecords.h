@@ -6,12 +6,14 @@ class SelectRecords:public fileOps {
 		char typed_string[30], tempStr[30];
 		signed int comparison;
 		int SN;
+		size_t t;
 	public:
 		// Constructor/Deconstructor
 		SelectRecords() {
 		    typed_string[0] = {}; tempStr[0] = {};
 		    comparison = -1;
 		    SN = 1;
+		    t = 0;
 		}
 		~SelectRecords() { };
 
@@ -32,10 +34,10 @@ class SelectRecords:public fileOps {
             collectStrings();
             while(!feof(fptrIn)) {
             	// extract a string of equivalent length from the string on file
-                for (i = 0; i < strlen(typed_string); i++) {
-					tempStr[i] = file_string[i];
+                for (t = 0; t < strlen(typed_string); t++) {
+					tempStr[t] = file_string[t];
                 }
-                tempStr[i] = '\0';
+                tempStr[t] = '\0';
                 // compare both strings
                 comparison = strcmp(tempStr, typed_string);
                 // if identical, print out the string from file

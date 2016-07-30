@@ -2,19 +2,16 @@
 #define RECORD_H_INCLUDED
 class Record {
 protected:
-	char *title;
-	char *intercomNum;
-	char *dept;
+	char title[30];
+	char intercomNum[4];
+	char dept[50];
 	// Constructors/deconstructor
 public:
-	Record();
+	Record() {
+		title[0] = ' ';
+		intercomNum[0] = ' ';
+		dept[0] = ' ';
+	}
 	~Record() { };
 };
-
-Record::Record()
-{
-	title[0] = ' ';
-	intercomNum[0] = ' ';
-	dept[0] = ' ';
-}
 #endif // RECORD_H_INCLUDED

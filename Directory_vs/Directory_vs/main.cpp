@@ -1,12 +1,12 @@
 #ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS 
 #endif
+
 #include<iostream>
 #include<cstring>
 #include<cstdio>
 #include"AllRecords.h"
 #include"SelectRecords.h"
-
 int main() {
 	fileOps *RdWrt;
 	AllRecords all;
@@ -14,13 +14,8 @@ int main() {
 	char trigger{};
 	int options = 0;
 	bool testing{};
-	
-	/*
-	Write code that will enable the program to receive values from the user
-	and form a string and write this string to the text data file.
-	*/
-	
-	// Input instructions and conditionals 
+
+	// Input instructions and conditionals
 	std::cout << "To print selected records, type 1." << std::endl;
 	std::cout << "To print all records, type 2." << std::endl;
 	std::cout << "Selection: ";
@@ -38,7 +33,7 @@ int main() {
 		testing = RdWrt->validate();
 		if (testing == true) { return -1; }
 		std::cout << "You selected " << options << "\n ";
-		std::cout << "Do you want to continue (Y/N)?: ";
+		std::cout << "Do you want to continue {Y/N)?: ";
 		std::cin >> trigger;
 		if (trigger == 'Y' || trigger == 'y') {
 			RdWrt->printOut();

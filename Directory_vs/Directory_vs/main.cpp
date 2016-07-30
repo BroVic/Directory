@@ -3,7 +3,6 @@
 #endif
 
 #include<iostream>
-#include<cstring>
 #include<cstdio>
 #include"AllRecords.h"
 #include"SelectRecords.h"

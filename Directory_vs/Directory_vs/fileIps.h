@@ -1,11 +1,12 @@
 #ifndef FILEIPS_H_INCLUDED
 #define FILEIPS_H_INCLUDED
-#include<cstdio>
 #include "Record.h"
-class fileIps:public Record {
-        FILE * fPtrOut;
-        char new_string[95];
-        int i, j;
+class fileIps:protected Record {
+private:
+	int i, j;
+protected:
+	FILE * fPtrOut;
+	char new_string[95];  
 public:
 	fileIps();
     ~fileIps() { fclose(fPtrOut); }
@@ -23,16 +24,12 @@ public:
 
  void fileIps::create_string()
  {
-	 while (!feof(fPtrOut))
-	 {
-		 int i = 0; int j = 0;
-		 while ((new_string[i++] = title[j++]) != '\n');
-		 new_string[i - 1] = ','; j = 0;
-		 while ((new_string[i++] = intercomNum[j++]) != '\n');
-		 new_string[i - 1] = ','; j = 0;
-		 while ((new_string[i++] = dept[j++]) != '\n');
-		 new_string[i - 1] = '\0';
-	 }
+	while ((new_string[i++] = title[j++]) != '\n');
+	new_string[i - 1] = ','; j = 0;
+	while ((new_string[i++] = intercomNum[j++]) != '\n');
+	new_string[i - 1] = ','; j = 0;
+	while ((new_string[i++] = dept[j++]) != '\n');
+	new_string[i - 1] = '\0';
 	 return;
  }
 

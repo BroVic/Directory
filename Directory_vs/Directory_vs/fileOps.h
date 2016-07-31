@@ -5,10 +5,10 @@ private:
 	int i, j;  // counters
 protected:
 	FILE *fptrIn;
-	char file_string[100];  // to be changed to pointer instead
+	char file_string[95];  // to be changed to pointer instead
 public:
 	fileOps() {
-		fptrIn = fopen("office-contact.csv", "r");
+		fopen_s(&fptrIn, "office-contact.csv", "r");
 		file_string[0] = {};
 		i = 0; j = 0;
 	}

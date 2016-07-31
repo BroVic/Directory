@@ -27,7 +27,7 @@ public:
 	virtual void printOut() {
 		// for printing selected records
 		printf("Enter Officer's title: ");
-		scanf("%29s", typed_string);
+		gets_s(typed_string, 29);
 		// get the length of the entered string + NULL character
 
 		collectStrings();

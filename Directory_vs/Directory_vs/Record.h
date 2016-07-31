@@ -2,9 +2,9 @@
 #define RECORD_H_INCLUDED
 class Record {
 protected:
-	char title[30];
+	char title[20];
 	char intercomNum[4];
-	char dept[50];
+	char dept[20];
 	// Constructors/deconstructor
 public:
 	Record() {

@@ -2,15 +2,13 @@
 #define RECORD_H_INCLUDED
 class Record {
 protected:
-	char title[20];
-	char intercomNum[4];
-	char dept[20];
-	// Constructors/deconstructor
+	std::string title, intercomNum, dept;
 public:
+	// Constructors/deconstructor
 	Record() {
-		title[0] = ' ';
-		intercomNum[0] = ' ';
-		dept[0] = ' ';
+		title;
+		intercomNum;
+		dept;
 	}
 	~Record() { };
 };

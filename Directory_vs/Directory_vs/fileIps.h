@@ -5,36 +5,45 @@ private:
 	unsigned int i, j;
 protected:
 	FILE * fPtrOut;
-	char new_string[44];  
+	std::string new_string;  
 public:
 	fileIps();
+	fileIps(std::string, std::string, std::string);
+	fileIps(std::string);
     ~fileIps() { fclose(fPtrOut); }
 	
 	// function declarations
 	bool validate();
-	void rcv_values(char a[20], char b[4], char c[20]);
 	void create_string();
 	void write_string();
 };
 
- fileIps::fileIps() {
+ fileIps::fileIps() {							// default constructor
 	fopen_s(&fPtrOut, "example.txt", "a");
 	if (feof(fPtrOut))
 		printf("%s\n", "End-of-file condition!");
-	new_string[0] = ' ';
-	i = 0; j = 0;
-}
-
- void fileIps::rcv_values(char a[20], char b[4], char c[20])
+	new_string;
+} 
+ fileIps::fileIps(std::string str)					// copy constructor
  {
-	 for (i = 0; i < strlen(a); i++)
-		 title[i] = a[i];
-	 for (i = 0; i < strlen(b); i++)
-		 intercomNum[i] = b[i];
-	 for (i = 0; i < strlen(c); i++)
-		 dept[i] = c[i];
+	 fopen_s(&fPtrOut, "example.txt", "a");
+	 if (feof(fPtrOut))
+		 printf("%s\n", "End-of-file condition");
+	 new_string = str;
  }
 
+ fileIps::fileIps(std::string a, std::string b, std::string c) // regular constructor
+ {
+	 fopen_s(&fPtrOut, "example.txt", "a");
+	 if (feof(fPtrOut))
+		 printf("%s\n", "End-of-file condition!");
+	 new_string;
+	 title = a;
+	 intercomNum = b;
+	 dept = c;
+	 return;
+ }
+ // check wether file opening results in a null pointer
  bool fileIps::validate() {
 	 if (fPtrOut == nullptr) {
 		 std::cout << "Could not open the file" << std::endl;
@@ -45,14 +54,12 @@ public:
 
  void fileIps::create_string()
  {
-	i = 0;
-	while ((new_string[i++] = title[j++]) != '\0');
-	new_string[i - 1] = ','; j = 0;
-	while ((new_string[i++] = intercomNum[j++]) != '\0');
-	new_string[i - 1] = ','; j = 0;
-	while ((new_string[i++] = dept[j++]) != '\0');
-	new_string[i - 1] = '\n';
-	return;
+	 new_string = title;
+	 new_string.append(",");
+	 new_string.append(intercomNum);
+	 new_string.append(",");
+	 new_string.append(dept);
+	 return;
  }
 
  void fileIps::write_string() {

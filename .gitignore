@@ -8,3 +8,5 @@ obj/*
 Directory_vs/Directory_vs.VC.VC.opendb 
 Directory_vs/Directory_vs/example.txt 
 Directory_vs/Directory_vs/sample.cpp 
+AppToDeploy/* 
+Directory-consoleapp/* 

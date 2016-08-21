@@ -1,70 +1,91 @@
+/*
+*	Copyright (c) 2016 Victor Ordu. All rights reserved.
+*
+*	The information and source code contained herein is the exclusive
+*	property of Victor A. Ordu (victorordu@outlook.com) and may not be disclosed, examined
+*	or reproduced in whole or in part without explicit written authorization
+*	from the author.
+*
+*	PURPOSE:
+*	A program for an application that will store and retrieve office contact details of staff
+*	of the National Environmental Standards and Regulations Enforcement Agency (NESREA) HQ
+*	at No. 4, Oro Ago Crescent, Garki II, Abuja, Nigeria.
+*
+*	fileIps.h
+*/
+
 #ifndef FILEIPS_H_INCLUDED
 #define FILEIPS_H_INCLUDED
-class fileIps:public Record {
+class fileIps{
 private:
-	unsigned int i, j;
+	unsigned i, j;
 protected:
-	FILE * fPtrOut;
-	std::string new_string;  
+	ofstream ontoFile;
+	string new_string;
+	string new_title, new_intercomNum, new_dept;
 public:
-	fileIps();
-	fileIps(std::string, std::string, std::string);
-	fileIps(std::string);
-    ~fileIps() { fclose(fPtrOut); }
+	fileIps()
+	{ // default constructor
+		ontoFile.open("example.txt", ios::in | ios::app);
+	}
+	fileIps(string);
+	fileIps(string, string, string);
+    ~fileIps()
+	{
+		ontoFile.close(); 
+	}
 	
 	// function declarations
 	bool validate();
 	void create_string();
 	void write_string();
 };
+#endif // FILEIPS_H_INCLUDED
 
- fileIps::fileIps() {							// default constructor
-	fopen_s(&fPtrOut, "example.txt", "a");
-	if (feof(fPtrOut))
-		printf("%s\n", "End-of-file condition!");
-	new_string;
+ fileIps::fileIps(string str = "Default string")
+ {							// assignment constructor
+	ontoFile.open("example.txt", ios::in | ios::app);
+	new_string = str;
 } 
- fileIps::fileIps(std::string str)					// copy constructor
+
+ fileIps::fileIps(string a, string b, string c)
  {
-	 fopen_s(&fPtrOut, "example.txt", "a");
-	 if (feof(fPtrOut))
-		 printf("%s\n", "End-of-file condition");
-	 new_string = str;
+	 new_title = a;
+	 new_intercomNum = b;
+	 new_dept = c;
  }
 
- fileIps::fileIps(std::string a, std::string b, std::string c) // regular constructor
+ // check whether file opening is successful
+ bool fileIps::validate()
  {
-	 fopen_s(&fPtrOut, "example.txt", "a");
-	 if (feof(fPtrOut))
-		 printf("%s\n", "End-of-file condition!");
-	 new_string;
-	 title = a;
-	 intercomNum = b;
-	 dept = c;
-	 return;
- }
- // check wether file opening results in a null pointer
- bool fileIps::validate() {
-	 if (fPtrOut == nullptr) {
+	 if (ontoFile.is_open())
+		 return false;
+	 else
+	 {
 		 std::cout << "Could not open the file" << std::endl;
 		 return true;
 	 }
-	 else { return false; }
  }
 
  void fileIps::create_string()
  {
-	 new_string = title;
+	 new_string = new_title;
 	 new_string.append(",");
-	 new_string.append(intercomNum);
+	 new_string.append(new_intercomNum);
 	 new_string.append(",");
-	 new_string.append(dept);
+	 new_string.append(new_dept);
 	 return;
  }
 
  void fileIps::write_string() {
-		 fwrite(&new_string, sizeof(new_string), 1, fPtrOut);
-		 return;
+	 if (ontoFile.is_open())
+	 {
+		 if (!new_string.empty())
+			 ontoFile << new_string;
+		 else if (new_string.empty())
+			 cout << "Error: String entry not read internally.";
+	 }
+	 else cout << "Error: File could not be opened.";
+	 return;
  }
 
-#endif // FILEIPS_H_INCLUDED

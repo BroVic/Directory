@@ -1,21 +1,31 @@
+/*
+*	Copyright (c) 2016 Victor Ordu. All rights reserved.
+*
+*	The information and source code contained herein is the exclusive
+*	property of Victor A. Ordu (victorordu@outlook.com) and may not be disclosed, examined
+*	or reproduced in whole or in part without explicit written authorization
+*	from the author.
+*
+*	PURPOSE:
+*	A program for an application that will store and retrieve office contact details of staff
+*	of the National Environmental Standards and Regulations Enforcement Agency (NESREA) HQ
+*	at No. 4, Oro Ago Crescent, Garki II, Abuja, Nigeria.
+*
+*	SelectRecords.h
+*/
+
 #ifndef SELECTRECORDS_H_INCLUDED
 #define SELECTRECORDS_H_INCLUDED
+#include<string>
+using namespace std;
 class SelectRecords :public fileOps {
 private:
-	std::string typed_string, tempStr;
-	signed int comparison;
-	int SN;
-	size_t t;
+	string typed_string;
+	unsigned serialNo;
 public:
 	// Constructor/Deconstructor
-	SelectRecords() {
-		typed_string;
-		tempStr;
-		comparison = -1;
-		SN = 1;
-		t = 0;
-	}
-	~SelectRecords() { };
+	SelectRecords();
+	~SelectRecords() { }
 
 	virtual bool validate();  // to check whether memmore was allocated successfully
 	virtual void printOut();  // to print out the selected records
@@ -23,35 +33,39 @@ public:
 #endif // SELECTRECORDS_H_INCLUDED
 
 // Function definitions
+SelectRecords::SelectRecords() {			// assignment constructor
+	typed_string = "No entry made";
+	serialNo = serialNo;
+}
+
 bool SelectRecords::validate() {
-	if (fptrIn == nullptr) {
+	if (fromFile.is_open())
+	{
+		return false;
+	}
+	else
+	{
 		std::cout << "Could not open to print SELECTED record(s)" << std::endl;
 		return true;
 	}
-	else { return false; }
 }
 
-void SelectRecords::printOut() {
-	// for printing selected records
-	printf("Enter Officer's title: ");
-	gets_s(typed_string, 29);
-	// get the length of the entered string + NULL character
+void SelectRecords::printOut()
+{
+	// User entry
+	cout << "Enter Officer's title: ";		// CONSIDER PUTTING IN THE MAIN FUNCTION
+	getline(cin, typed_string);			
 
+	// compare the strings
 	collectStrings();
-	while (!feof(fptrIn)) {
-		// extract a string of equivalent length from the string on file
-		for (t = 0; t < strlen(typed_string); t++) {
-			tempStr[t] = file_string[t];
-		}
-		tempStr[t] = '\0';
-		// compare both strings
-		comparison = strcmp(tempStr, typed_string);
-		// if identical, print out the string from file
-		// else do nothing
-		if (comparison == 0) {
-			printf("%s \n", file_string);
+	while (!fromFile.eof())
+	{
+		if (file_string.compare(typed_string) == 0)
+		{
+			splitString();
+			cout << serialNo << '\t' << title << '\t' << intercomNum << '\t' << dept << '\n';
 		}
 		collectStrings();
-		SN++;
+		serialNo++;
 	}
 }

@@ -25,7 +25,7 @@ public:
 	AllRecords(); 
 	~AllRecords() { }
 
-	virtual bool validate();
+	// virtual bool validate();			*** DEPRECATED ***
 	virtual void printOut();           // for printing all existing records
 };
 #endif // ALLRECORDS_H_INCLUDED
@@ -36,6 +36,7 @@ AllRecords::AllRecords()
 	serialNo = 1;
 	brk = ' ';
 }
+/* *** DEPRECATED ***
 bool AllRecords::validate()
 {
 	if (fromFile.is_open())
@@ -46,6 +47,7 @@ bool AllRecords::validate()
 		return true;
 	}
 }
+*/
 
 void AllRecords::printOut() { 
 	collectStrings();

@@ -33,7 +33,7 @@ public:
 	}
 
 	virtual void printOut() = 0;   // to print output
-	virtual bool validate() = 0;   // to validate file opening
+	// virtual bool validate() = 0;   // to validate file opening    (*** DEPRECATED ***)
 
 	// File operations
 	void collectStrings();          // for collecting strings from file
@@ -53,13 +53,16 @@ void fileOps::collectStrings()
 { 
 	if (fromFile.is_open())
 	{
-		while (!fromFile.eof())
+		if (!fromFile.eof())
 		{
 			getline(fromFile, file_string);
 		}
+		else
+		{
+			cout << "End of file - finished reading data.";
+		}
 	}
 	else cout << "Error: Could not open the file.";
-	
 	return;
 }
 

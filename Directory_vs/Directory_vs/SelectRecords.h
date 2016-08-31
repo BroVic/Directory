@@ -25,9 +25,10 @@ private:
 public:
 	// Constructor/Deconstructor
 	SelectRecords();
+	SelectRecords(string);
 	~SelectRecords() { }
 
-	virtual bool validate();  // to check whether memmore was allocated successfully
+	// virtual bool validate();  // to check whether memmory was allocated successfully  (*** DEPRECATED ***)
 	virtual void printOut();  // to print out the selected records
 };
 #endif // SELECTRECORDS_H_INCLUDED
@@ -35,9 +36,14 @@ public:
 // Function definitions
 SelectRecords::SelectRecords() {			// assignment constructor
 	typed_string = "No entry made";
-	serialNo = serialNo;
+	serialNo = 1;
 }
 
+SelectRecords::SelectRecords(string fromUser) {			// assignment constructor
+	typed_string = fromUser;
+	serialNo = 1;
+}
+/* (*** DEPRECATED ***)
 bool SelectRecords::validate() {
 	if (fromFile.is_open())
 	{
@@ -49,23 +55,19 @@ bool SelectRecords::validate() {
 		return true;
 	}
 }
-
+*/
 void SelectRecords::printOut()
 {
-	// User entry
-	cout << "Enter Officer's title: ";		// CONSIDER PUTTING IN THE MAIN FUNCTION
-	getline(cin, typed_string);			
-
 	// compare the strings
 	collectStrings();
 	while (!fromFile.eof())
 	{
-		if (file_string.compare(typed_string) == 0)
+		if (file_string.find(typed_string) != string::npos)
 		{
 			splitString();
 			cout << serialNo << '\t' << title << '\t' << intercomNum << '\t' << dept << '\n';
+			serialNo++;
 		}
 		collectStrings();
-		serialNo++;
 	}
 }

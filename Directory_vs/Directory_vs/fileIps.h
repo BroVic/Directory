@@ -36,7 +36,7 @@ public:
 	}
 	
 	// function declarations
-	bool validate();
+	/* bool validate(); */		// DEPRECATED
 	void create_string();
 	void write_string();
 };
@@ -50,11 +50,14 @@ public:
 
  fileIps::fileIps(string a, string b, string c)
  {
+	 ontoFile.open("example.txt", ios::in | ios::app);
 	 new_title = a;
 	 new_intercomNum = b;
 	 new_dept = c;
  }
 
+ /*
+ **** DEPRECATED ****
  // check whether file opening is successful
  bool fileIps::validate()
  {
@@ -66,7 +69,8 @@ public:
 		 return true;
 	 }
  }
-
+ **********************
+ */
  void fileIps::create_string()
  {
 	 new_string = new_title;

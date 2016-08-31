@@ -28,9 +28,8 @@ using namespace std;
 
 int main()
 {
-	char trigger{};
 	int options = 0;
-	bool testing{};
+	// bool testing{};
 
 	printf("%s", "Enter 1 to WRITE DATA or enter 2 to READ DATA:\n");
 	cin >> options;
@@ -49,34 +48,50 @@ int main()
 		fileIps Inptbox(ext_title, ext_intercomNum, ext_dept);
 		
 		Inptbox.create_string();
-		testing = Inptbox.validate();
+		Inptbox.write_string();
+		/* *** DEPRECATED ***
+		testing = Inptbox.validate();		
 		if (testing == true)
 			return -1;
 		else if (testing == false)
 			Inptbox.write_string();
+		*/
 	}
 	else if (options == 2)									// READ DATA
 	{
 		fileOps *RdWrt;            
-		AllRecords All;
-		SelectRecords Some;
 
 		cout << "To print selected records, type 1. To print all records, type 2:\n";
 		cin >> options;
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		if (options == 1)			// Look for selected records
 		{
+			// User entry
+			string entry;
+			cout << "Enter Officer's title: ";
+			getline(cin, entry);
+
+			SelectRecords Some(entry);
 			RdWrt = &Some;
-			testing = RdWrt->validate();
+
+			/* *** DEPRECATED ***
+			testing = RdWrt->validate();			
 			if (testing == true) { return -1; }
+			*/
+
 			RdWrt->printOut();
 		}
 		else if (options == 2)		// View all available records
 		{
+			AllRecords All;
 			RdWrt = &All;
-			
+			char trigger{};
+
+			/**** DEPRECATED ***
 			testing = RdWrt->validate();
 			if (testing == true)
 				return -1;
+			*/
 			
 			cout << "You selected " << options << '\n';
 			cout << "Do you want to continue (Y/N)?: ";

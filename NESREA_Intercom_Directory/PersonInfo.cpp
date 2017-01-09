@@ -6,40 +6,80 @@ PersonInfo::PersonInfo()
 {
 }
 
+PersonInfo::PersonInfo(
+	std::string title, std::string fname, std::string lname, std::string cad_f, std::string cad_l, std::string cad_s) :
+	_title (title), _firstName (fname), _lastName (lname), _cadre_full (cad_f), _cadre_long (cad_l), _cadre_short (cad_s)
+{
+}
+
 
 PersonInfo::~PersonInfo()
 {
 }
-
-std::string PersonInfo::getCadreF()
+void PersonInfo::set_title(std::string title)
 {
-	return cadre_full;
-}
-
-void PersonInfo::setCadreF(std::string cadre_f)
-{
-	cadre_full = cadre_f;
+	_title = title;
 	return;
 }
 
-std::string PersonInfo::getCadreL()
+std::string PersonInfo::get_title() const
 {
-	return cadre_long;
+	return std::string(_title);
 }
 
-void PersonInfo::setCadreL(std::string cadre_l)
+void PersonInfo::set_firstName(std::string fname)
 {
-	cadre_long = cadre_l;
+	_firstName = fname;
 	return;
 }
 
-std::string PersonInfo::getCadreS()
+std::string PersonInfo::get_firstName() const
 {
-	return cadre_short;
+	return std::string(_firstName);
 }
 
-void PersonInfo::setCadre(std::string cadre_s)
+void PersonInfo::set_lastName(std::string lname)
 {
-	cadre_short = cadre_s;
+	_lastName = lname;
+	return;
+}
+
+std::string PersonInfo::get_lastName() const
+{
+	return std::string(_lastName);
+}
+
+void PersonInfo::setCadreFull(std::string cad_f)
+{
+	_cadre_full = cad_f;
+	return;
+}
+
+std::string PersonInfo::getCadreFull() const
+{
+	return std::string(_cadre_full);
+}
+
+
+
+std::string PersonInfo::getCadreLong() const
+{
+	return std::string(_cadre_long);
+}
+
+void PersonInfo::setCadreLong(std::string cad_l)
+{
+	_cadre_long = cad_l;
+	return;
+}
+
+std::string PersonInfo::getCadreShort() const
+{
+	return std::string(_cadre_short);
+}
+
+void PersonInfo::setCadreShort(std::string cad_s)
+{
+	_cadre_short = cad_s;
 	return;
 }

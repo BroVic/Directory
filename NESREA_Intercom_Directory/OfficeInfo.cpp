@@ -1,4 +1,5 @@
 #include "OfficeInfo.h"
+#include <cctype>
 
 OfficeInfo::OfficeInfo()
 {
@@ -17,9 +18,36 @@ OfficeInfo::~OfficeInfo()
 // Displays all available records
 void OfficeInfo::show_ALL() 
 {
+	bool run;
+	do
+	{
+		char opt;
+		std::cout << "\nDisplay all avaiable records(Y/N)?: ";
+		std::cin >> opt;
+		if (tolower(opt) == (char)0x79)
+		{
+			run = true;
+			break;
+		}
+		else if (tolower(opt) == (char)0x6e)
+		{
+			run = false;
+			break;
+		}
+	} while (true);
+	
+	if (!run)
+	{
+		std::cout << "Returning to main menu." << std::endl
+			<< std::endl;
+		return;
+	}
+
 	infile.open("office-contact.txt");
 	if (infile.is_open())
 	{
+		std::cout << "Showing all records: " << std::endl;
+
 		int counter = 0;
 		while (std::getline(infile, _BUFFER))
 		{
@@ -41,7 +69,10 @@ void OfficeInfo::show_ALL()
 		}
 	}
 	else
+	{
 		std::cerr << "File office-contact.txt could not be opened" << std::endl;
+		return;
+	}
 	
 	infile.close();
 

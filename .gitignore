@@ -19,3 +19,6 @@ NESREA_Intercom_Directory/NESREA_Intercom_Directory.vcxproj
 NESREA_Intercom_Directory/Debug/NESREA_Intercom_Directory.log 
 NESREA_Intercom_Directory/.vs/NESREA_Intercom_Directory/v14/.suo 
 NESREA_Intercom_Directory/Debug/NESREA_Intercom_Directory.vcxprojResolveAssemblyReference.cache 
+NESREA_Intercom_Directory/Project1/* 
+NESREA_Intercom_Directory/.vs/* 
+NESREA_Intercom_Directory/Debug/* 

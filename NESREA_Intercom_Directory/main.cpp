@@ -70,7 +70,7 @@ int main()
 void showMainGreeting()
 {
 	std::cout << "NESREA HQ Intercom Directory" << std::endl;
-	std::cout << "(c) Victor Ordu 2017. All Rights Reserved." << std::endl;
+	std::cout << "Copyright (C) Victor Ordu 2017. All Rights Reserved." << std::endl;
 	std::cout.width(50);
 	std::cout.fill('-');
 	std::cout << '\n';

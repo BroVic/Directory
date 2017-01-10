@@ -37,17 +37,13 @@ int main()
 		switch (select)
 		{
 		case 1:
-		{
 			details.show_ALL();
 			break;
-		}
 		case 2:
 		case 3:
 		case 4:
-		{
 			std::cout << "Yet to be implemented" << std::endl;
 			break;
-		}
 		default:
 			break;
 		}

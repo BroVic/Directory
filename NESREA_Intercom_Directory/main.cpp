@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
+#include <iomanip>
 #include "PersonInfo.h"
 #include"OfficeInfo.h"
 
@@ -40,8 +41,11 @@ int main()
 			details.show_ALL();
 			break;
 		case 2:
+			// TODO:  call for search
 		case 3:
+			// TODO: call to insert
 		case 4:
+			// TODO: call to update
 			std::cout << "Yet to be implemented" << std::endl;
 			break;
 		default:
@@ -65,23 +69,4 @@ int main()
 	std::cin.get();
 
 	return 0;
-}
-
-void showMainGreeting()
-{
-	std::cout << "NESREA HQ Intercom Directory" << std::endl;
-	std::cout << "Copyright (C) Victor Ordu 2017. All Rights Reserved." << std::endl;
-	std::cout.width(50);
-	std::cout.fill('-');
-	std::cout << '\n';
-	return;
-}
-
-void showMainMenu()
-{
-	std::cout << "1 - Show All Records" << std::endl;
-	std::cout << "2 - Search for a Record" << std::endl;
-	std::cout << "3 - Add a New Record" << std::endl;
-	std::cout << "4 - Update an Existing Record" << std::endl;
-	return;
 }

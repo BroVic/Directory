@@ -1,4 +1,4 @@
-// functions.cpp
+// controls.cpp
 
 
 #include<iostream>

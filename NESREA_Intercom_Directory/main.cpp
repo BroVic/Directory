@@ -1,12 +1,10 @@
 ﻿#include <iostream>
 #include <fstream>
-#include <string>
-#include <iomanip>
 #include "PersonInfo.h"
 #include"OfficeInfo.h"
+#include "Controls.h"
 
-void showMainGreeting();
-void showMainMenu();
+
 
 
 int main()
@@ -19,7 +17,7 @@ int main()
 	while (POW != 'Q')
 	{
 		int attempts{ 0 };
-		int select{ -1 };
+		int select{  };
 		do
 		{
 			
@@ -32,19 +30,19 @@ int main()
 				std::cerr << "You nade 3 invalid entries. Goodbye." << std::endl;
 				return 1;
 			}
-		} while (select < 1 | select > 4);
+		} while ((select < 1) | (select > 4));
 
 		OfficeInfo details;
 		switch (select)
 		{
-		case 1:
+		case DO_ALL:
 			details.show_ALL();
 			break;
-		case 2:
+		case DO_SEARCH:
 			// TODO:  call for search
-		case 3:
+		case DO_INSERT:
 			// TODO: call to insert
-		case 4:
+		case DO_UPDATE:
 			// TODO: call to update
 			std::cout << "Yet to be implemented" << std::endl;
 			break;

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef OFFICEINFO_H
+#define OFFICEINFO_H
 
 // TODO: Define some constants/limits.
 
@@ -35,3 +36,4 @@ public:
 
 	void setDept(std::string);
 };
+#endif // !OFFICEINFO_H

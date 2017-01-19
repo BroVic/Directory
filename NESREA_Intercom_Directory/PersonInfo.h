@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef PERSONINFO_H
+#define PERSONINFO_H
 
 #include <string>
 
@@ -38,4 +38,4 @@ public:
 	std::string getCadreShort() const;
 	void setCadreShort(std::string);
 };
-
+#endif // !PERSONINFO_H

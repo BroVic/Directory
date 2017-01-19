@@ -28,7 +28,7 @@ int main()
 			if (attempts > 3)
 			{
 				std::cerr << "You nade 3 invalid entries. Goodbye." << std::endl;
-				return 1;
+				return INVALID_ENTRY;
 			}
 		} while ((select < 1) | (select > 4));
 
@@ -66,5 +66,5 @@ int main()
 
 	std::cin.get();
 
-	return 0;
+	return SUCCESS;
 }

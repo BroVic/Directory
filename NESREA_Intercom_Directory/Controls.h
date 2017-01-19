@@ -1,5 +1,11 @@
 ﻿#pragma once
 
+enum ExitCode
+{
+	SUCCESS,
+	INVALID_ENTRY,
+};
+
 enum Menu
 {
 	DO_ALL = 1,

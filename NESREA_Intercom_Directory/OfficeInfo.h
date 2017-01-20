@@ -1,39 +1,50 @@
 #ifndef OFFICEINFO_H
 #define OFFICEINFO_H
 
-// TODO: Define some constants/limits.
-
 #include <fstream>
 #include <iostream>
 #include <string>
 
 #include "PersonInfo.h"
 
+typedef void INPUT;
+
+#define MAX_STRINGLENGTH 50
+
 class OfficeInfo :
 	public PersonInfo
 {
 private:
-	//std::string office;
+	std::string _BUFFER;
+	
 	std::string _dept;
 	std::string _intercomNum;
-	std::string _BUFFER;
-	OfficeInfo(std::string);
 
 public:
 	std::ifstream infile;
 	//std::ofstream outfile;
 	//std::fstream iofile;
 	
+	std::string searchTerm;
+	
+	
 	OfficeInfo();
-	OfficeInfo(std::string, std::string);
 	~OfficeInfo();
 
-	void show_ALL();
-	std::string capture_item(std::string &);
-
 	void setIntercomNum(std::string);
-	//void showIntercomOnly() const;
-
 	void setDept(std::string);
+	
+	INPUT collectSearchTerm();
+	void lookupTerm();
+
+	void displayHeader() const;
+	void show_ALL();
+	void displayIndivRecord(std::string, int);
+	//void showIntercomOnly() const;
+	
+	std::string capture_item(std::string &);
+	
+
+
 };
 #endif // !OFFICEINFO_H

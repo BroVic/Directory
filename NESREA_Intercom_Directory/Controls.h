@@ -1,6 +1,8 @@
 ﻿#ifndef CONTROLS_H
 #define CONTROLS_H
 
+#define MAIN_EXIT 0x0079
+
 // A list of exit codes
 enum ExitCode
 {

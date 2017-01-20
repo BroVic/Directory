@@ -16,10 +16,12 @@ void showMainGreeting()
 
 void showMainMenu()
 {
-	std::cout << "\n1 - Show All Records" << std::endl;
+	std::cout << "\nCHOOSE AN OPTION: " << std::endl;
+	std::cout << "1 - Show All Records" << std::endl;
 	std::cout << "2 - Search for a Record" << std::endl;
 	std::cout << "3 - Add a New Record" << std::endl;
 	std::cout << "4 - Update an Existing Record" << std::endl;
+	std::cout << "--> ";
 
 	return;
 }

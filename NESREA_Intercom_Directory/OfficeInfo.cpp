@@ -1,9 +1,13 @@
 #include "OfficeInfo.h"
 #include <cctype>
 #include <iomanip>
+#include <iostream>
+#include <array>
 
 OfficeInfo::OfficeInfo()
 {
+	input_call = { "Cadre", "Intercom No.", "Department" };
+	INSERTIONS = input_call.size();
 }
 
 OfficeInfo::~OfficeInfo()
@@ -30,20 +34,15 @@ void OfficeInfo::setDept(std::string off)
 	return;
 }
 
-void OfficeInfo::collectSearchTerm()
+std::string OfficeInfo::collectInput(std::string input)
 {
-	char entry[MAX_STRINGLENGTH];
-
 	std::cin.clear();
-	std::cin.ignore(32767, '\n');
-	std::cin.get(entry, MAX_STRINGLENGTH);
+	std::cin.ignore(32676, '\n');
+	std::getline(std::cin, input);
 	
-	searchTerm = entry;
 	while (true)
 	{
-		if (searchTerm.length() > MAX_STRINGLENGTH)
-			std::cout << "Maximum allowed is 50 characters" << std::endl << std::endl;
-		else if (searchTerm.length() == 0)
+		if (searchTerm.length() == 0)
 			std::cout << "No entry made." << std::endl << std::endl;
 		else
 		{
@@ -51,12 +50,21 @@ void OfficeInfo::collectSearchTerm()
 			break;
 		}
 		std::cout << "Try again: ";
-		collectSearchTerm();
-	}	
+		collectInput(input);			// review this!!!
+	}
+	return input;
+}
+
+void OfficeInfo::collectSearchTerm()
+{
+	std::cin.clear();
+	std::cin.ignore(32767, '\n');
+	std::cout << "Enter your search term: ";
+	collectInput(searchTerm);
 	return;
 }
 
-void OfficeInfo::lookupTerm()
+void OfficeInfo::lookupSearchTerm()
 {
 	infile.open("office-contact.txt");
 	
@@ -162,6 +170,55 @@ std::string OfficeInfo::capture_item(std::string & buff)
 	buff.erase(0, ++i);
 
 	return temp;
+}
+
+void OfficeInfo::collateRecord()
+{
+	_BUFFER.clear();
+	_BUFFER = get_title();
+	_BUFFER.append(",");
+	_BUFFER.append(_intercomNum);
+	_BUFFER.append(",");
+	_BUFFER.append(_dept);
+
+	return;
+}
+
+void OfficeInfo::writeNewRecord()
+{
+	outfile.open("office-contact.txt", std::ios_base::app);
+
+	if (outfile.is_open())
+	{
+		int count = 0;
+		std::cout << "Confirm your entry: " << std::endl;
+		displayHeader();
+		displayIndivRecord(_BUFFER, count);
+
+		char decide;
+		std::cout << "Save to file? (y/n) ";
+		std::cin >> decide;
+		if (tolower(decide) == 'y')
+			outfile << _BUFFER << std::endl;
+		else if (tolower(decide) == 'n')
+			std::cout << "You declined to proceed with making entry." << std::endl;
+		else
+			std::cout << "Invalid entry." << std::endl;
+	}
+	else
+		std::cerr << "Could not open the data file." << std::endl;
+
+	outfile.close();
+
+	return;
+}
+
+void OfficeInfo::tempInputMainData()
+{
+	set_title(input_fields[0]);
+	_intercomNum = input_fields[1];
+	_dept = input_fields[2];
+	return;
 }
 
 void OfficeInfo::displayIndivRecord(std::string buff, int it)

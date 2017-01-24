@@ -34,35 +34,52 @@ void OfficeInfo::setDept(std::string off)
 	return;
 }
 
-std::string OfficeInfo::collectInput(std::string input)
+void OfficeInfo::showMainMenu() const
+{
+	std::cout << "\nCHOOSE AN OPTION: " << std::endl;
+	std::cout << "1 - Show All Records" << std::endl;
+	std::cout << "2 - Search for a Record" << std::endl;
+	std::cout << "3 - Add a New Record" << std::endl;
+	std::cout << "4 - Update an Existing Record" << std::endl;
+	std::cout << "--> ";
+
+	return;
+}
+
+
+std::string OfficeInfo::collectInput()
 {
 	std::cin.clear();
 	std::cin.ignore(32676, '\n');
-	std::getline(std::cin, input);
+	std::cout << "Supply a term: ";
+	std::getline(std::cin, searchTerm);
 	
 	while (true)
 	{
 		if (searchTerm.length() == 0)
+		{
 			std::cout << "No entry made." << std::endl << std::endl;
+		}
 		else
 		{
 			std::cout << '\n';
 			break;
 		}
 		std::cout << "Try again: ";
-		collectInput(input);			// review this!!!
+		collectInput();			// review this!!!
 	}
-	return input;
+	return searchTerm;
 }
-
+/*
 void OfficeInfo::collectSearchTerm()
 {
 	std::cin.clear();
 	std::cin.ignore(32767, '\n');
 	std::cout << "Enter your search term: ";
-	collectInput(searchTerm);
+	searchTerm = collectInput(input);
 	return;
 }
+*/
 
 void OfficeInfo::lookupSearchTerm()
 {

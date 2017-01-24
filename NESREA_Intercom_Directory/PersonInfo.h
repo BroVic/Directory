@@ -3,6 +3,20 @@
 
 #include <string>
 
+#define	SUCCESS 0
+#define	INVALID_ENTRY 1
+#define	NO_ENTRY 2
+
+#define MAIN_EXIT 0x0079
+#define MAX_ATTEMPTS 3
+#define MAX_STRINGLENGTH 20
+#define BLANK ' '
+
+#define DO_ALL  0x0001
+#define DO_SEARCH 0x0002
+#define DO_INSERT 0x0003
+#define DO_UPDATE 0x0004
+
 class PersonInfo
 {
 private:
